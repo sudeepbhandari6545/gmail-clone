@@ -1,9 +1,11 @@
 import React from 'react'
 //icons
-import { IconButton } from '@material-ui/core'
+import { Avatar, IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
+import AppsIcon from '@material-ui/icons/Apps'
+import NotificationsIcon from '@material-ui/icons/Notifications'
 
 import './Header.css'
 
@@ -25,7 +27,16 @@ function Header() {
           <input type="text" placeholder="search" />
           <ArrowDropDownIcon className="dropdown_icon" />
         </div>
-        <div className="header_right"></div>
+        <div className="header_right">
+          <IconButton>
+            <AppsIcon />
+          </IconButton>
+
+          <IconButton>
+            <NotificationsIcon />
+          </IconButton>
+          <Avatar />
+        </div>
       </div>
     </>
   )

@@ -3,12 +3,13 @@ import './App.css'
 
 //components
 import Header from './Header'
+import SideBar from './SideBar'
 
 function App() {
   return (
     <div className="app">
       <Header />
-      <h2>Gmail Clone</h2>
+      <SideBar />
     </div>
   )
 }
