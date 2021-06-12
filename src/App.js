@@ -3,6 +3,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 
+import SendMail from './SendMail'
+
 //components
 import Header from './Header'
 import SideBar from './SideBar'
@@ -26,6 +28,7 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <SendMail />
       </div>
     </Router>
   )
