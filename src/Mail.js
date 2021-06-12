@@ -3,7 +3,7 @@ import React from 'react'
 function Mail() {
   return (
     <>
-      <div className="mail"></div>
+      <div className="mail">welcome to mail</div>
     </>
   )
 }
