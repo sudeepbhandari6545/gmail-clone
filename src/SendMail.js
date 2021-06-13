@@ -6,9 +6,17 @@ import CloseIcon from '@material-ui/icons/Close'
 
 import './Sendmail.css'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
+import { closeSendMessage } from './features/mailSlice'
 
 function SendMail() {
-  const { register, handleSubmit, watch, errors } = useForm()
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    watch,
+  } = useForm()
+  const dispatch = useDispatch()
 
   const onSubmit = (formData) => {
     console.log(formData)
@@ -18,7 +26,10 @@ function SendMail() {
       <div className="sendMail">
         <div className="sendMail_header">
           <h3>New Message</h3>
-          <CloseIcon className="sendmail_close" />
+          <CloseIcon
+            onClick={() => dispatch(closeSendMessage())}
+            className="sendmail_close"
+          />
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -26,21 +37,30 @@ function SendMail() {
             name="to"
             placeholder="To"
             type="email"
-            {...register('to', { required: 'Required' })}
+            {...register('to', { required: true })}
           />
+          {errors.to && <p className="sendMail_error">To is Required</p>}
+
           <input
             name="subject"
             type="text"
             placeholder="Subject"
-            {...register('subject', { required: 'Required' })}
+            {...register('subject', { required: 'subject' })}
           />
+          {errors.subject && (
+            <p className="sendMail_error">Subject is Required</p>
+          )}
+
           <input
             name="message"
             placeholder="Message.."
             type="text"
             className="sendMail_messages"
-            {...register('message', { required: 'Required' })}
+            {...register('message', { required: true })}
           />
+          {errors.message && (
+            <p className="sendMail_error">Message is Required</p>
+          )}
 
           <div className="sendmail_option">
             <Button
