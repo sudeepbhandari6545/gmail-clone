@@ -11,14 +11,31 @@ import Header from './Header'
 import SideBar from './SideBar'
 import Mail from './Mail'
 import EmailList from './EmailList'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectSendMessageIsOpen } from './features/mailSlice'
-import { selectUser } from './features/userSlice'
+import { login, selectUser } from './features/userSlice'
+import { useEffect } from 'react'
+import { auth } from './firebase'
 
 function App() {
   const sendMessageIsOpen = useSelector(selectSendMessageIsOpen)
-
   const user = useSelector(selectUser)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        //the user is logged in
+        dispatch(
+          login({
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+          }),
+        )
+      }
+    })
+  }, [])
 
   return (
     <Router>
